@@ -1,9 +1,9 @@
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
+    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -93,6 +93,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  display: none;
 }
 
 a {
@@ -100,8 +101,69 @@ a {
   text-decoration: none;
 }
 
+.container {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  filter: contrast(20);
+  background-color: black;
+  overflow: hidden;
+}
+
+span {
+  color: #ffffff;
+  font-weight: 500;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: 1;
+  display: block;
+  transition: all 1.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.zero {
+  animation: letteranim 2s infinite ease;
+  animation-delay: 0s;
+}
+.active-users {
+  display: flex;
+  flex-direction: row;
+}
+.container p {
+  padding: 0 !important;
+}
+
+@keyframes letteranim {
+  0% {
+    opacity: 0.6;
+    filter: blur(0.1rem);
+    font-size: 4rem;
+  }
+  50% {
+    opacity: 1;
+    filter: blur(0.2rem);
+    font-size: 5rem;
+  }
+  100% {
+    opacity: 0.6;
+    filter: blur(0.1rem);
+    font-size: 4rem;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+}
+@media (max-width: 700px) {
+  body {
+    display: block;
   }
 }
