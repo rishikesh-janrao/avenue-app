@@ -1,13 +1,19 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  padding: 3rem 0;
   min-height: 100vh;
 }
+.queryContainer{
+  background-color: #0095da;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  width: 100vw;
+  color: white;
+  min-height: 80vh;
+}
 
-.description {    
+.description {
   display: flex;
   flex-direction: column;
   justify-content: inherit;
@@ -16,7 +22,10 @@
   max-width: var(--max-width);
   width: 100%;
   z-index: 2;
+  padding-top: 2rem;
   font-family: var(--font-mono);
+  padding-bottom: 1.5rem;
+  background-color: aliceblue;
 }
 
 .description a {
@@ -30,7 +39,6 @@
   position: relative;
   margin: 0;
   padding: 1rem;
-  background-color: rgba(var(--callout-rgb), 0.5);
   border: 1px solid rgba(var(--callout-border-rgb), 0.3);
   border-radius: var(--border-radius);
 }
@@ -39,18 +47,104 @@
   font-weight: 700;
   font-family: var(--font-mono);
 }
+.row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  height: auto;
+}
+.tile {
+  border-radius: 1rem;
+  display: flex;
+  width: 90%;
+  border: 1px solid white;
+  color: gray;
+  margin: 0.5rem 2rem;
+  flex-direction: column;
+  background-color:aliceblue;
+  max-height: 50vh;
+  transition:  height 2s;
+}
+.tile span:first-child{
+  display: flex;
+  align-items: center;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  justify-content: center;
+  padding: 0.6rem;
+  font-size: 1rem;
+  color: rgb(45, 45, 45);
+}
+.shortDescription{
+  display: flex;
+  align-items: center;
+  padding: 0.6rem;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+.tile span{
+  pointer-events: none;
+}
+
+.tile label{
+  text-align: left;
+  width: 100%;
+}
+.tile button{
+  padding: 0.2rem;
+  pointer-events: all;
+  font-size: 0.6rem;
+}
+.tile hr{
+  border: 1px solid white;
+}
+.tileDescription{
+  height: 0;
+  display: flex;
+  flex-direction: column;
+  transition: height 500ms;
+}
+.tileDescription[data-isopen="true"]{
+  display: flex;
+  height: auto;
+  padding: 1rem;
+}
+.shortDescription label:first-child{
+  text-align: left;
+}
+.shortDescription label:last-child{
+  text-align: right;
+}
+.row a{
+  text-decoration: underline;
+  pointer-events: all;
+  color: rgb(0, 149, 218);
+}
+.gmap{
+  margin-top: 10%;
+  width: 100%;
+  height: auto;
+  border: none;
+  outline: none;
+}
+.fieldLabel{
+  text-decoration: underline;
+}
 
 .grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(25%, auto));
   width: var(--max-width);
   max-width: 100%;
+  z-index: 4;
 }
 
 .card {
   padding: 1rem 1.2rem;
   border-radius: var(--border-radius);
-  background: rgba(var(--card-rgb), 0);
   border: 1px solid rgba(var(--card-border-rgb), 0);
   transition: background 200ms, border 200ms;
 }
@@ -98,7 +192,7 @@
 
 .center::before,
 .center::after {
-  content: '';
+  content: "";
   left: 50%;
   position: absolute;
   filter: blur(45px);
@@ -111,7 +205,6 @@
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
-    background: rgba(var(--card-rgb), 0.1);
     border: 1px solid rgba(var(--card-border-rgb), 0.15);
   }
 
@@ -178,29 +271,30 @@
     padding: 2rem 1rem 1.4rem;
     border-radius: 0;
     border: none;
-    border-bottom: 1px solid rgba(var(--callout-border-rgb), 0.25);
-    background: linear-gradient(
-      to bottom,
-      rgba(var(--background-start-rgb), 1),
-      rgba(var(--callout-rgb), 0.5)
-    );
-    background-clip: padding-box;
+    border-bottom: 1px solid gray;
     backdrop-filter: blur(24px);
+    width: auto;
+    font-weight: bolder;
   }
-  .description h4{
+  .description h4 {
     z-index: 3;
   }
 
   .description div {
     align-items: flex-end;
     pointer-events: none;
-    height: 8rem;
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgb(var(--background-end-rgb)) 40%
-    );
+    height: 5rem;
     z-index: 1;
+  }
+  .loader {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  .innerLoader {
+    height: 100%;
   }
 }
 
