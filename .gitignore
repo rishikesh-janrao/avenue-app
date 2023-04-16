@@ -12,6 +12,10 @@
 /.next/
 /out/
 
+#apps
+/android
+/ios
+
 # production
 /build
 

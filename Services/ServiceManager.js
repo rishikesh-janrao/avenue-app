@@ -16,13 +16,10 @@ const ServiceManager = () => {
       .catch((err) => {
         console.log("Failed to fetch active users!", err);
       });
-  const getAllEnquries = async () => {
+  const getAllEnquiries = async () => {
     return await fetch(host + "/enquiry?action=" + btoa("GETALL"))
       .then((res) => res.text())
-      .then((res) => (!res.includes("<") ? JSON.parse(res) : emptyPayload))
-      .then((res) =>
-        typeof res === "object" && !res.status ? res : emptyPayload
-      )
+      .then((res) => (!res.includes("<") && !res.status  ? JSON.parse(res) : []))
       .catch((err) => {
         console.log("Failed to fetch all records!", err);
       });
@@ -30,7 +27,7 @@ const ServiceManager = () => {
 
   return {
     getActiveUsers,
-    getAllEnquries,
+    getAllEnquiries,
   };
 };
 

@@ -105,7 +105,6 @@ a {
   overflow: hidden;
 }
 
-
 .zero {
   font-weight: 500;
   text-align: center;
@@ -143,8 +142,8 @@ a {
   background: #0095da;
   animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 }
-.query-loader .lds-facebook div{
-background-color: white;
+.query-loader .lds-facebook div {
+  background-color: white;
 }
 .lds-facebook div:nth-child(1) {
   left: 8px;
@@ -158,66 +157,80 @@ background-color: white;
   left: 56px;
   animation-delay: 0;
 }
-.title{
+.title {
   font-size: 1.5rem;
   text-transform: capitalize;
+  margin-top: 1rem;
 }
-.filter{
+.filter {
   font-size: 0.8rem;
 }
 
-
-
 .toggle {
-	display: inline-block;
+  display: inline-block;
   width: 100%;
   padding-left: 1.5rem;
   margin: 5% 0;
 }
-.toggle-switch {
-	display: inline-block;
-	background: #ccc;
-	border-radius: 6px;
-	width: 28px;
-	height: 12px;
-	position: relative;
-	vertical-align: middle;
-	transition: background 0.25s;
-	&:before,
-	&:after {
-		content: "";
-	}
-	&:before {
-		display: block;
-		background: linear-gradient(to bottom, #fff 0%,#eee 100%);
-		border-radius: 50%;
-		box-shadow: 0 0 0 1px rgba(0,0,0,0.25);
-		width: 12px;
-		height: 12px;
-		position: absolute;
-		transition: left 0.25s;
-	}
-	.toggle-checkbox:checked + & {
-		background: #56c080;
-		&:before {
-			left: 15px;
-		}
-	}
-}
 .toggle-checkbox {
-	position: absolute;
-	visibility: hidden;
+  display: flex;
+  width: 8%;
+  height: 5%;
+  background-color: white;
+}
+.checked {
+  background-color: green !important;
 }
 .toggle-label {
-	margin-left: 5px;
-	position: relative;
-	top: 2px;
+  margin-left: 5px;
+  position: relative;
+  top: 2px;
 }
-.filter{
-  text-align: left;
-  justify-content: left;
+.filter {
+  margin: 1rem 5%;
+  border: 1px solid white;
+  background-color: aliceblue;
+  width: 90% !important;
+  border-radius: 2rem;
+  flex-direction: row !important;
+  color: white !important;
 }
-.query-loader{
+.avenue-corporation-filter {
+  background-color: #0095da;
+  height: 2rem;
+  width: calc(100% / 2.5);
+  border-top-left-radius: 3rem;
+  border-bottom-left-radius: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.avenue-packs-filter {
+  background-color: #0095da;
+  height: 2rem;
+  width: calc(100% / 2.5);
+  border-top-right-radius: 3rem;
+  border-bottom-right-radius: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.filter-separator{
+  background-image: url("../../public/filter-separator.png");
+  height: 2rem;
+  width: calc(100% / 4.5);
+  background-size: cover;
+}
+.filter-separator.reverse{
+  transform: rotate(180deg);
+}
+.avenue-corporation-filter.active-filter {
+  background-color: rgb(96, 192, 96);
+}
+.avenue-packs-filter.active-filter {
+  background-color: rgb(96, 192, 96);
+}
+.query-loader {
   height: 45vh !important;
 }
 
@@ -226,12 +239,12 @@ background-color: white;
     top: 8px;
     height: 64px;
   }
-  50%, 100% {
+  50%,
+  100% {
     top: 24px;
     height: 32px;
   }
 }
-
 
 @keyframes letteranim {
   0% {

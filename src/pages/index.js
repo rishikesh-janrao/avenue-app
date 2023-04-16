@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import ServiceManager from "../../Services/ServiceManager";
 import Loader from "../../Components/Loader";
 import Image from "next/image";
-const { getActiveUsers, getAllEnquries } = ServiceManager();
+const { getActiveUsers, getAllEnquiries } = ServiceManager();
 
 const NavigatorIcon =
   "data:image/png;base64,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";
@@ -17,46 +17,7 @@ export default function Home() {
   const [queryLoader, setQueryLoader] = useState(false);
   const [selectedTile, setSelectedTile] = useState("");
   const [isDomainSelected, setDomain] = useState(false);
-  const [enquiries, setEnquiries] = useState([
-    {
-      name: "Rishikesh Janrao",
-      timestamp: Date.now(),
-      mobile: "8390787106",
-    },
-    {
-      name: "Rishikesh",
-      timestamp: Date.now(),
-      mobile: "8390787106",
-      email: "janraorishikesh@gmail.com",
-      msg: `Hi, 
-            I want to enquire one of you products.`,
-      location: {
-        lat: "19.9880892",
-        long: "74.5345989",
-      },
-      companyname: "Evolutyz Corporation",
-      domain: "avenue-packs",
-    },
-    {
-      name: "RJ",
-      timestamp: Date.now(),
-      mobile: "8390787106",
-      email: "janraorishikesh@gmail.com",
-      msg: `Hi, 
-            I want to enquire one of you products.`,
-      location: {
-        lat: "19.9880892",
-        long: "74.5345989",
-      },
-      companyname: "Evolutyz Corporation",
-      domain: "avenue-corporation",
-    },
-    {
-      name: "R Janrao",
-      timestamp: Date.now(),
-      mobile: "8390787106",
-    },
-  ]);
+  const [enquiries, setEnquiries] = useState([]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -65,10 +26,10 @@ export default function Home() {
           setActiveUsers(users);
         }
       });
-      getAllEnquries()
+      getAllEnquiries()
         .then((list) => {
           if (list) {
-            setEnquiries(list);
+            setEnquiries(list || []);
             let avenuePacksCount = 0;
             let avenueCorpCount = 0;
             list.forEach((el) => {
@@ -80,7 +41,9 @@ export default function Home() {
               }
             });
             if (avenueCorpCount >= avenuePacksCount) {
-              loadEnquiries();
+              selectAvenueCorporation();
+            } else {
+              selectAvenuePacks();
             }
             setLoader(true);
           }
@@ -96,6 +59,29 @@ export default function Home() {
           setActiveUsers(users);
         }
       });
+      getAllEnquiries()
+        .then((list) => {
+          if (list) {
+            setEnquiries(list || []);
+            let avenuePacksCount = 0;
+            let avenueCorpCount = 0;
+            list.forEach((el) => {
+              if (el.domain === "avenue-corporation") {
+                avenueCorpCount++;
+              }
+              if (el.domain === "avenue-packs") {
+                avenuePacksCount++;
+              }
+            });
+            if (avenueCorpCount >= avenuePacksCount) {
+              selectAvenueCorporation();
+            } else {
+              selectAvenuePacks();
+            }
+            setLoader(true);
+          }
+        })
+        .catch((err) => console.log(err));
     }, 10000);
     return () => clearInterval(interval);
   }, []);
@@ -115,11 +101,20 @@ export default function Home() {
   const formatTimestamp = (timestamp) =>
     new Date(timestamp).toLocaleDateString();
 
-  const loadEnquiries = () => {
+  const selectAvenueCorporation = () => {
     setQueryLoader(true);
 
     const timer = setTimeout(() => {
-      setDomain(!isDomainSelected);
+      setDomain(true);
+      setQueryLoader(false);
+      clearTimeout(timer);
+    }, 2000);
+  };
+  const selectAvenuePacks = () => {
+    setQueryLoader(true);
+
+    const timer = setTimeout(() => {
+      setDomain(false);
       setQueryLoader(false);
       clearTimeout(timer);
     }, 2000);
@@ -150,20 +145,31 @@ export default function Home() {
           </div>
           <div className={styles.queryContainer}>
             <div className={`${styles.row} title`}>enquiries</div>
-            <div className={`${styles.row} filter`}>
-              <label className="toggle">
-                <input
-                  className="toggle-checkbox"
-                  type="checkbox"
-                  checked={isDomainSelected}
-                  onChange={loadEnquiries}
-                />
-                <div className="toggle-switch"></div>
-                <span className="toggle-label">
-                  {isDomainSelected ? "Avenue Corporation" : "Avenue Packs"}
-                </span>
-              </label>
-            </div>
+            {!queryLoader && (
+              <div className={`${styles.row} filter`}>
+                <div
+                  className={`avenue-corporation-filter ${
+                    isDomainSelected ? "active-filter" : ""
+                  }`}
+                  onClick={selectAvenueCorporation}
+                >
+                  Avenue Corporation
+                </div>
+                <div
+                  className={`filter-separator ${
+                    isDomainSelected ? "" : "reverse"
+                  }`}
+                ></div>
+                <div
+                  className={`avenue-packs-filter ${
+                    isDomainSelected ? "" : "active-filter"
+                  }`}
+                  onClick={selectAvenuePacks}
+                >
+                  Avenue Packs
+                </div>
+              </div>
+            )}
             {queryLoader ? (
               <Loader className={"query-loader"} />
             ) : (
@@ -175,18 +181,14 @@ export default function Home() {
                       : el.domain === "avenue-packs") && (
                       <div
                         className={styles.tile}
-                        key={btoa(el.name)}
-                        onClick={(e) =>
-                          selectedTile === btoa(el.name)
-                            ? setSelectedTile("")
-                            : setSelectedTile(btoa(el.name))
-                        }
+                        key={btoa(el.email)}
+                        onClick={(e) => setSelectedTile(btoa(el.email))}
                       >
                         <span>{el.name}</span>
                         <hr />
                         <span className={styles.shortDescription}>
                           <label>Date : {formatTimestamp(el.timestamp)}</label>
-                          {selectedTile !== btoa(el.name) ? (
+                          {selectedTile !== btoa(el.email) ? (
                             <Image
                               src={"/navigator-icon.png"}
                               width={25}
@@ -195,24 +197,23 @@ export default function Home() {
                             />
                           ) : (
                             <label>
-                              Mobile :{" "}
-                              <a href={`tel:${el.mobile}`}>{el.mobile}</a>
+                              Mobile : <label>{el.mobile}</label>
                             </label>
                           )}
                         </span>
                         <motion.div
                           layout
                           className={styles.tileDescription}
-                          data-isopen={selectedTile === btoa(el.name)}
+                          data-isopen={selectedTile === btoa(el.email)}
                         >
-                          {selectedTile === btoa(el.name) && (
+                          {selectedTile === btoa(el.email) && (
                             <>
                               <label>
                                 <label className={styles.fieldLabel}>
                                   Email
                                 </label>
                                 &nbsp;:
-                                <a href={`mailto:${el.email}`}>{el.email}</a>
+                                <label>{el.email}</label>
                               </label>
                               {el.companyname && (
                                 <label>
@@ -225,18 +226,7 @@ export default function Home() {
                               <br />
                               <p>{el.msg}</p>
                               <br />
-                              {/* {el.location && (
-                        // ${el.location.lat},${el.location.long}
-                        <iframe
-                          src={`https://www.google.com/maps/embed?pb=!1m24!1m12!1m3!${el.location.long}!${el.location.long}!${el.location.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m9!3e0!4m3!3m2!${el.location.lat}!${el.location.long}!4m3!3m2!${el.location.lat}!${el.location.long}!5e0!3m2!1sen!2sin!4v1681463596894!5m2!1sen!2sin`}
-                          
-                          className={styles.gmap}
-                          allowFullScreen=""
-                          loading="lazy"
-                          referrerPolicy="no-referrer-when-downgrade"
-                          title="google maps address"
-                        ></iframe>
-                      )} */}
+                              {/* Show location here from el.location */}
                             </>
                           )}
                         </motion.div>
